@@ -20,14 +20,14 @@ unsigned char SerialReceivedString[50];
 unsigned char SerialSendString[50];
 unsigned SerialLen = 50;
 
-void delaySeg(unsigned waitTime);
-void initUART(void);
-void SerialPrint(unsigned char byte);
-void SerialWifiWrite (char* Valor, unsigned Tamanho);
-void SerialWrite(const char* frase);
-char SerialRead(void);
-void SerialReadString();
-bit ContainString(const char* containedString);
+void delaySeg(unsigned waitTime);                           //DELAY
+void initUART(void);                                        //INICIALIZA UART
+void SerialPrint(unsigned char byte);                       //ESCREVE BYTE
+void SerialWifiWrite (char* Valor, unsigned Tamanho);       //ESCREVE DA WIFI
+void SerialWrite(const char* frase);                        //ESCREVE DA SERIAL
+char SerialRead(void);                                      //LER BYTE
+void SerialReadString();                                    //LER DA WIFI
+bit ContainString(const char* containedString);             
 bit waitToken(char value);
 void waitUntil(const unsigned char stringToCompare[]);
 void SerialReadUntilToken(const char charToCompare);

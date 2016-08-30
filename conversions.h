@@ -1,7 +1,7 @@
 /* 
  * File:   conversions.h
- * Author: test
- *
+ * Author: BatCaverna
+ * FUNÇÕES DE CONVERSÃO USADAS POR OUTRAS CLASSES.
  * Created on 29 de Julho de 2015, 18:38
  */
 

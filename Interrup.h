@@ -1,7 +1,7 @@
 /* 
  * File:   Interrup.h
- * Author: Domingos Neto
- *
+ * Author: BatCaverna
+ * Interrupção [...]
  * Created on 23 de Março de 2016, 13:26
  */
 
@@ -11,15 +11,11 @@
 #include <delays.h>
 #include <xc.h>
 #include "Serial.h"
+#include "PWM.h"
+#include "ADC.h"
+#include "ADXL345.h"
 
-int freq = 80;                       //CARGA DO TIMER0 PARA APROXIMADAMENTE 1Khz
-int _pwm[5] = {0,0,0,0,0};             //VALORES DE COMPARAÇÃO PARA PWM
-unsigned char counter = 0; //counter2 = 0;
-
-void pwmExecute();
-void interrupt Interrupt();
-void initPWM();
-
+void interrupt Interrupt();                             ///INTERRUPÇÃO
 
 #endif	/* INTERRUP_H */
 

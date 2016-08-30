@@ -1,7 +1,7 @@
 /* 
  * File:   teste2.h
- * Author: Domingos Neto
- *
+ * Author: BatCaverna
+ * Classe com os metodos para inicialização e leitura do ACC e GIRO
  * Created on 4 de Março de 2016, 19:00
  */
 
@@ -11,16 +11,37 @@
 #include <plib/i2c.h>
 #include <delays.h>
 #include "Serial.h"
-#include "conversions.h"
 
-int valoresAcelerometroReal[50];
+unsigned char valoresEnviar[220]={0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0,
+                                  0,0,0,0,0,0,0,0,0,0};
+
 unsigned const char Oksend[] = "OK\r\n";
-unsigned char valoresAcelerometroBruto[100];
-unsigned const char sendCmd[] = "AT+CIPSEND=0,100\r\n";
+unsigned const char sendCmd[] = "AT+CIPSEND=0,220\r\n";
 
-void lerAceleracao();
-unsigned readACC(unsigned Adress);
-void initI2C(unsigned Adress1, unsigned Adress2);
+void lerADXL();                                                 //LEITURA ADXL
+unsigned readACC(unsigned Adress);                              //LEITURA ACC
+unsigned readGIRO(unsigned Adress);                             //LEITURA GIRO
+void initI2C(unsigned Adress1, unsigned Adress2);               //INIT I2C
 
 
 

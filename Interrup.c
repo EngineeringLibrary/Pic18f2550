@@ -1,40 +1,16 @@
 #include"Interrup.h"
 
-void pwmExecute(){
-        
-        counter++;
-    
-    if(counter == _pwm[0]){
-        PORTB &= 0b11111011; 
-    }
-    if(counter == _pwm[1]){
-        PORTB &= 0b11110111; 
-    }
-    if(counter == _pwm[2]){
-        PORTB &= 0b11101111; 
-    }
-    if(counter == _pwm[3]){
-        PORTB &= 0b11011111; 
-    }else if(counter == 0){
-        PORTB |= 0b11111100;
-    }
-    else if(counter == 256){
-        counter = 0;
-    }
-
-}
-
 void interrupt Interrupt() {
-     if(INTCONbits.TMR0IF) {             //TIMER0 OVERFLOW?
-        //counter++;                        //INCREMENTA CONT EM 1
-        //pwmExecute();
+     if(INTCONbits.TMR0IF) {                //TIMER0 OVERFLOW?
+
         INTCONbits.TMR0IF = 0;
         TMR0L = freq;
-        pwmExecute();                     //CHAMA FUNÇÃO PWM
+        pwmExecute();                       //CHAMA FUNÇÃO PWM
       }
      if(PIR1bits.RCIF){
          
          PIR1bits.RCIF = 0;
+         //_pwm[0]=255;
          
          if(waitToken('_'))
          {
@@ -84,20 +60,18 @@ void interrupt Interrupt() {
                 _pwm[3]=1;
             }
         }
+         
     }
+    ///ISSO NÃO É AQUI(Y) 
+    //lerADXL();                          //CHAMA FUNÇÃO LEITURA ADXL
+     if(PIR1bits.ADIF){
+         //StartADC();                         //CHAMA FUNÇÃO LEITURA ADC
+        PIR1bits.ADIF = 0;
+        ADC[0] = ((unsigned char)ADRESL);
+        ADC[1] = ((unsigned char)ADRESH);
+        _pwm[0] = ADC[1];
+     }
+     return;
 }
 
-void initPWM(){
-     INTCON = 0xA0;                  //HABILITA INT GLOBAL
-                                     //HABILITA A INT DO TIMER0
-                                     
-     T0CON = 0xC1;                   //HABILITA TIMER0
-                                     //HABILITA TIMER0 COMO 8BIT'S
-                                     //HABILITA CONT. PELO CLOCK INTERNO
-                                     //HABILITA PRESCALER 1:4
-                                     
-     TRISB = 0x03;                    //DEFINE PORT A COMO SAIDA
-     //LATB = 0xFF;                    //INICIA PORT A EM 1
-     TMR0L = freq;                   //CARGA INICIAL DO TIMER0
-}
 

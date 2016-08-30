@@ -15,8 +15,8 @@ bit flagLink = 0, flagData;
 unsigned char WifiTCPData[15];
 unsigned WifiTCPDataLen = 15;
 
-void WifiTCPinit();
-void WifiTCPSend(unsigned char *stringToSend, unsigned lenStr);   
-void WifiTCPRead(void);
+void WifiTCPinit();                                             //INICIALIZA WIFI
+void WifiTCPSend(unsigned char *stringToSend, unsigned lenStr); //ESCREVE
+void WifiTCPRead(void);                                         //LER
 
 #endif	 WIFITCP_H
