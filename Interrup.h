@@ -15,7 +15,12 @@
 #include "ADC.h"
 #include "ADXL345.h"
 
-void interrupt Interrupt();                             ///INTERRUPÇÃO
+void interrupt INTERRUPTION();
+void interrupt high_priority INTERRUPTION_TIMERS();                             ///INTERRUPÇÃO
+void interrupt low_priority  INTERRUPTION_peripheral();
 
+void INTERRUPTION_Timer0();
+void INTERRUPTION_Serial();
+void INTERRUPTION_ADC();
 #endif	/* INTERRUP_H */
 

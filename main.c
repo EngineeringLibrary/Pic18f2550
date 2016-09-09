@@ -1,12 +1,8 @@
 #include <pconfig.h>
 #include <delays.h>
 #include <xc.h>
-#include "Serial.h"
-#include "PWM.h"
 #include "Interrup.h"
-#include "wifiTCP.h"
-#include "ADC.h"
-#include "ADXL345.h"
+
 
          
 #pragma config USBDIV = 2
@@ -20,29 +16,35 @@
 #pragma config PBADEN = OFF
 
 #define _XTAL_FREQ 48000000
+//F05
+//typedef struct pid{
+//    int Kp, Ki, Kd, outPutControl;
+//    float e, ea, ed, ei;
+//}PID;
+//extern PID PID1;
 
-long unsigned i = 0, j = 0;
-bit FlagTXSend = 0;
 
 void main(void) {
         
 //Inicializando todos metodos para leitura e escrida de dados
-//Olha "Interrup.h" para maiores detalhes:    
-//-----------------------------------------------------------    
+//Olhar "Interrup.h" para maiores detalhes:    
+    
     initUART();
-    initPWM();
+    PWM_Init();
     WifiTCPinit();
-    initADC();
-    initI2C(0xA6,0x2D);
+    ADC_Init();
+//    initI2C(0xA6,0x2D);
 //-----------------------------------------------------------  
-    FlagTXSend = 0;
-    ADCON0bits.CHS0 = 0;
-    ADCON0bits.CHS1 = 0;
-    ADCON0bits.CHS2 = 0;
-    while(1){                
+
+
+    while(1){            
+//        ADC_Start();
         ///TESTE DE LEITURA ADC E ADXL
+//        _pwm[0] = 255;
         //lerAceleracao();
-        //StartADC();
+//        StartADC();
+        
+//        _pwm[0] = ADC[1];//ADC[1];
         ///-----------------------
     }
     return;

@@ -21,6 +21,7 @@ unsigned char SerialSendString[50];
 unsigned SerialLen = 50;
 
 void delaySeg(unsigned waitTime);                           //DELAY
+void delayMS(unsigned waitTime);                           //DELAY
 void initUART(void);                                        //INICIALIZA UART
 void SerialPrint(unsigned char byte);                       //ESCREVE BYTE
 void SerialWifiWrite (char* Valor, unsigned Tamanho);       //ESCREVE DA WIFI

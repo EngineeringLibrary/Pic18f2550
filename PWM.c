@@ -1,10 +1,10 @@
 #include "PWM.h"
 
 
-void initPWM(){
+void PWM_Init(){
      INTCON = 0xA0;                  //HABILITA INT GLOBAL
                                      //HABILITA A INT DO TIMER0
-                                     
+     //TMR0IP = 1;                                
      T0CON = 0xC1;                   //HABILITA TIMER0
                                      //HABILITA TIMER0 COMO 8BIT'S
                                      //HABILITA CONT. PELO CLOCK INTERNO
@@ -15,26 +15,21 @@ void initPWM(){
      TMR0L = freq;                   //CARGA INICIAL DO TIMER0
 }
 
-void pwmExecute(){
+void PWM_Execute(){
         
-        counter++;
+    PWM_Counter++;
     
-    if(counter == _pwm[0]){
+    if(PWM_Counter == _pwm[0])
         PORTB &= 0b11111011; 
-    }
-    if(counter == _pwm[1]){
+    if(PWM_Counter == _pwm[1])
         PORTB &= 0b11110111; 
-    }
-    if(counter == _pwm[2]){
+    if(PWM_Counter == _pwm[2])
         PORTB &= 0b11101111; 
-    }
-    if(counter == _pwm[3]){
-        PORTB &= 0b11011111; 
-    }else if(counter == 0){
+    if(PWM_Counter == _pwm[3])
+        PORTB &= 0b11011111;        
+    if(PWM_Counter == _pwm[4])
+        PORTB &= 0b10111111;
+    else if(PWM_Counter == 0)
         PORTB |= 0b11111100;
-    }
-   // else if(counter == 256){
-     //   counter = 0;
-    //}
-
+    return;
 }

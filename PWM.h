@@ -14,12 +14,12 @@
 #include <xc.h>
 #include "Serial.h"
 
-int freq = 80;                      //CARGA DO TIMER0 PARA APROXIMADAMENTE 1Khz
-int _pwm[5] = {0,0,0,0,0};          //VALORES DE COMPARAÇÃO PARA PWM
-unsigned char counter = 0;          //counter2 = 0;
+unsigned freq = 80;                      //CARGA DO TIMER0 PARA APROXIMADAMENTE 1Khz
+unsigned _pwm[5] = {255,255,255,255,255};          //VALORES DE COMPARAÇÃO PARA PWM
+unsigned char PWM_Counter = 0;          //PWM_Counter2 = 0;
 
-void pwmExecute();                  //EXECUTA PWM
-void initPWM();                     //INICIALIZA PWM
+void PWM_Init();                     //INICIALIZA PWM
+void PWM_Execute();                  //EXECUTA PWM
 
 #endif	/* PWM_H */
 

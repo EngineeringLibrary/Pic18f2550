@@ -58,7 +58,7 @@ void lerADXL(){
    for(unsigned i = 0; i < 110; i += 22){
         __delay_ms(10);
 
-        StartADC();
+//        StartADC();
         
         //Acelerometro
         //x0x1
@@ -102,7 +102,7 @@ void lerADXL(){
     
      for(unsigned j = 110; j < 220; j += 22){
         __delay_ms(10);//__delay_ms(10);
-        StartADC();
+//        StartADC();
         
         //Acelerometro
         //x0x1

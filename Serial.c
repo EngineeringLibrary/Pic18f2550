@@ -8,6 +8,13 @@ void delaySeg(unsigned waitTime)
     return;
 }
 
+void delayMS(unsigned waitTime)
+{
+    for(unsigned j = 0; j < waitTime; ++j)
+            __delay_ms(1);
+    return;
+}
+
 void initUART(void)
 {
     TRISCbits.TRISC7 = 1;    TRISCbits.TRISC6 = 0;

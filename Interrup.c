@@ -1,17 +1,28 @@
 #include"Interrup.h"
+unsigned contador = 0;
+void interrupt INTERRUPTION() {
+    
 
-void interrupt Interrupt() {
-     if(INTCONbits.TMR0IF) {                //TIMER0 OVERFLOW?
+    INTERRUPTION_Timer0();
+    INTERRUPTION_ADC();
+    INTERRUPTION_Serial();
+     
+     return;
+}
 
+void INTERRUPTION_Timer0(){
+    if(INTCONbits.TMR0IF) {                //TIMER0 OVERFLOW?
         INTCONbits.TMR0IF = 0;
+//        PORTBbits.RB2 = !PORTBbits.RB2;
         TMR0L = freq;
-        pwmExecute();                       //CHAMA FUNÇÃO PWM
-      }
-     if(PIR1bits.RCIF){
+        PWM_Execute();                       //CHAMA FUNÇÃO PWM
+     }
+    return;
+}
+void INTERRUPTION_Serial(){
+    if(PIR1bits.RCIF){
          
          PIR1bits.RCIF = 0;
-         //_pwm[0]=255;
-         
          if(waitToken('_'))
          {
             SerialReadUntilToken('_');
@@ -62,16 +73,17 @@ void interrupt Interrupt() {
         }
          
     }
-    ///ISSO NÃO É AQUI(Y) 
-    //lerADXL();                          //CHAMA FUNÇÃO LEITURA ADXL
-     if(PIR1bits.ADIF){
-         //StartADC();                         //CHAMA FUNÇÃO LEITURA ADC
-        PIR1bits.ADIF = 0;
-        ADC[0] = ((unsigned char)ADRESL);
-        ADC[1] = ((unsigned char)ADRESH);
-        _pwm[0] = ADC[1];
-     }
-     return;
+    return;
 }
-
-
+void INTERRUPTION_ADC(){
+    if(PIR1bits.ADIF){
+        PIR1bits.ADIF = 0;
+        
+        ADC_Channel++;
+        if(ADC_Channel >= ADC_NChannel)
+            ADC_Channel = 0;
+//        ADC_Read(ADC_Channel);
+        ADC_PWM(ADC_Channel);
+     }
+    return;
+}
