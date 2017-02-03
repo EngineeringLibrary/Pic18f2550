@@ -30,9 +30,10 @@ void main(void) {
     initUART();
 //    WifiTCPinit();
     PWM_Init();
-//    initI2C(0xA6,0x2D);
+    initI2C(0xA6,0x2D);
+    sensorInit();
     
-    float z = -11.6; float phi = -3; float psi = -2; float theta = -2;
+    float l = 2, lambda = 1;
   
     pid[0].lowerLimit = -127; pid[0].upperLimit = 127;
     pid[0].Kp = 1.0; pid[0].Ki = 0.0; pid[0].Kd = 0.0; pid[0].step = 1.0;
@@ -46,56 +47,42 @@ void main(void) {
      pid[3].lowerLimit = -127; pid[3].upperLimit = 127;
     pid[3].Kp = 1.0; pid[3].Ki = 0.0; pid[3].Kd = 0.0; pid[3].step = 1.0;
 
-    unsigned char j=1;
-    for(unsigned char i = 1; i < 165; ++i) {
-        if(i < 35)
-            j++;
+    unsigned char j=1;           //165
+    for(unsigned char i = 1; i < 185; ++i) {
+//        if(i < 35)
+//            j++;
         _pwm[0] = i;
         _pwm[1] = i;
-        _pwm[3] = i + 8;
-        _pwm[2] = i + j;
+        _pwm[3] = i; //+ 8;
+        _pwm[2] = i; //+ j;
         delayMS(90);
     }
     while(1){          
-        
-        float l = 2, lambda = 1;
-        z += filtro*((readACC(0x36) + readACC(0x37)<<8)/256 - z);
-        PID_outputControlCalc(0,(z + 11.6),0);
+        readAccelGiroValues();
+        PID_outputControlCalc(5,pos.z,0);
         float u1 = pid[0].controlSignal + 740;
-        phi += filtro*((readGIRO(0x28) + readGIRO(0x29)<<8)/256 - phi);
-        PID_outputControlCalc(0.0,(phi + 3.0),1);
+        PID_outputControlCalc(0.0,giro.x,1);
         float u2 = pid[1].controlSignal;
-        psi += filtro*((readGIRO(0x2A) + readGIRO(0x2B))/256 - psi);
-        PID_outputControlCalc(0.0,(psi + 2.0),2);
+        PID_outputControlCalc(0.0,giro.y,2);
         float u3 = pid[2].controlSignal;
-        theta = filtro*((readGIRO(0x2C) + readGIRO(0x2D))/256-theta);
-        PID_outputControlCalc(0.0,(theta + 2.0),3);
+        PID_outputControlCalc(0.0,giro.z,3);
         float u4 = pid[3].controlSignal;
         
-//         _pwm[0] = SerialRead();
-//         SerialPrint(_pwm[0]);
-//         _pwm[1] = SerialRead();
-//         SerialPrint(_pwm[1]);
-//         _pwm[2] = SerialRead();
-//         SerialPrint(_pwm[2]); 
-//         _pwm[3] = SerialRead();
-//        SerialPrint(_pwm[3]);
-//        //----------------------------------------------------
         float pwmTemp = (u1/4 - u3/(2*l) - u4/(4*lambda));
-        if(pwmTemp <= 0)
-            pwmTemp = 1;
+        if(pwmTemp < 0)
+            pwmTemp = 0;
         _pwm[0] = (unsigned char) pwmTemp;
         pwmTemp = (u1/4 - u2/(2*l) + u4/(4*lambda));
-        if(pwmTemp <= 0)
-            pwmTemp = 1;
+        if(pwmTemp < 0)
+            pwmTemp = 0;
         _pwm[1] = (unsigned char) pwmTemp;
         pwmTemp = (u1/4 + u3/(2*l) - u4/(4*lambda));
-        if(pwmTemp <= 0)
-            pwmTemp = 1;
+        if(pwmTemp < 0)
+            pwmTemp = 0;
         _pwm[3] = (unsigned char) pwmTemp;
         pwmTemp = (u1/4 + u2/(2*l) + u4/(4*lambda));
-        if(pwmTemp <= 0)
-            pwmTemp = 1;
+        if(pwmTemp < 0)
+            pwmTemp = 0;
         _pwm[2] = (unsigned char) pwmTemp;
         
         __delay_ms(10); __delay_ms(10); __delay_ms(10); __delay_ms(10); __delay_ms(10); __delay_ms(10);

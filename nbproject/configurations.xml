@@ -11,6 +11,8 @@
       <itemPath>Serial.h</itemPath>
       <itemPath>ADC.h</itemPath>
       <itemPath>PWM.h</itemPath>
+      <itemPath>motorDePasso.h</itemPath>
+      <itemPath>PID.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,6 +28,8 @@
       <itemPath>Serial.c</itemPath>
       <itemPath>ADC.c</itemPath>
       <itemPath>PWM.c</itemPath>
+      <itemPath>motorDePasso.c</itemPath>
+      <itemPath>PID.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -33,8 +37,6 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>main.c</itemPath>
-    <itemPath>PID.c</itemPath>
-    <itemPath>PID.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>

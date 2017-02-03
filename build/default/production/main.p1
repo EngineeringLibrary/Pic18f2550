@@ -31,14 +31,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _initUART `(v ~T0 @X0 0 ef ]
 "20 PWM.h
 [v _PWM_Init `(v ~T0 @X0 0 ef ]
+"59 ADXL345.h
+[v _initI2C `(v ~T0 @X0 0 ef2`uc`uc ]
+"60
+[v _sensorInit `(v ~T0 @X0 0 ef ]
 "29 Serial.h
 [v _delayMS `(v ~T0 @X0 0 ef1`ui ]
-"56 ADXL345.h
-[v _readACC `(uc ~T0 @X0 0 ef1`uc ]
+"58 ADXL345.h
+[v _readAccelGiroValues `(v ~T0 @X0 0 ef ]
 "23 PID.h
 [v _PID_outputControlCalc `(v ~T0 @X0 0 ef3`f`f`uc ]
-"57 ADXL345.h
-[v _readGIRO `(uc ~T0 @X0 0 ef1`uc ]
 [v F4506 `(v ~T0 @X0 1 tf1`ul ]
 "157 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic18.h
 [v __delay `JF4506 ~T0 @X0 0 e ]
@@ -4486,230 +4488,210 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 32: PWM_Init();
 "32
 [e ( _PWM_Init ..  ]
-"35
-[v _z `f ~T0 @X0 1 a ]
-[; ;main.c: 35: float z = -11.6; float phi = -3; float psi = -2; float theta = -2;
-[e = _z -> -U .11.6 `f ]
-[v _phi `f ~T0 @X0 1 a ]
-[e = _phi -> -U -> 3 `i `f ]
-[v _psi `f ~T0 @X0 1 a ]
-[e = _psi -> -U -> 2 `i `f ]
-[v _theta `f ~T0 @X0 1 a ]
-[e = _theta -> -U -> 2 `i `f ]
-[; ;main.c: 37: pid[0].lowerLimit = -127; pid[0].upperLimit = 127;
-"37
+[; ;main.c: 33: initI2C(0xA6,0x2D);
+"33
+[e ( _initI2C (2 , -> -> 166 `i `uc -> -> 45 `i `uc ]
+[; ;main.c: 34: sensorInit();
+"34
+[e ( _sensorInit ..  ]
+"36
+[v _l `f ~T0 @X0 1 a ]
+[; ;main.c: 36: float l = 2, lambda = 1;
+[e = _l -> -> 2 `i `f ]
+[v _lambda `f ~T0 @X0 1 a ]
+[e = _lambda -> -> 1 `i `f ]
+[; ;main.c: 38: pid[0].lowerLimit = -127; pid[0].upperLimit = 127;
+"38
 [e = . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 9 -> -U -> 127 `i `f ]
 [e = . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 8 -> -> 127 `i `f ]
-[; ;main.c: 38: pid[0].Kp = 1.0; pid[0].Ki = 0.0; pid[0].Kd = 0.0; pid[0].step = 1.0;
-"38
+[; ;main.c: 39: pid[0].Kp = 1.0; pid[0].Ki = 0.0; pid[0].Kd = 0.0; pid[0].step = 1.0;
+"39
 [e = . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 0 -> .1.0 `f ]
 [e = . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 1 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 2 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 7 -> .1.0 `f ]
-[; ;main.c: 40: pid[1].lowerLimit = -127; pid[1].upperLimit = 127;
-"40
+[; ;main.c: 41: pid[1].lowerLimit = -127; pid[1].upperLimit = 127;
+"41
 [e = . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 9 -> -U -> 127 `i `f ]
 [e = . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 8 -> -> 127 `i `f ]
-[; ;main.c: 41: pid[1].Kp = 1.0; pid[1].Ki = 0.0; pid[1].Kd = 0.0; pid[1].step = 1.0;
-"41
+[; ;main.c: 42: pid[1].Kp = 1.0; pid[1].Ki = 0.0; pid[1].Kd = 0.0; pid[1].step = 1.0;
+"42
 [e = . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 0 -> .1.0 `f ]
 [e = . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 1 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 2 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 7 -> .1.0 `f ]
-[; ;main.c: 43: pid[2].lowerLimit = -127; pid[2].upperLimit = 127;
-"43
+[; ;main.c: 44: pid[2].lowerLimit = -127; pid[2].upperLimit = 127;
+"44
 [e = . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 9 -> -U -> 127 `i `f ]
 [e = . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 8 -> -> 127 `i `f ]
-[; ;main.c: 44: pid[2].Kp = 1.0; pid[2].Ki = 0.0; pid[2].Kd = 0.0; pid[2].step = 1.0;
-"44
+[; ;main.c: 45: pid[2].Kp = 1.0; pid[2].Ki = 0.0; pid[2].Kd = 0.0; pid[2].step = 1.0;
+"45
 [e = . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 0 -> .1.0 `f ]
 [e = . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 1 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 2 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 7 -> .1.0 `f ]
-[; ;main.c: 46: pid[3].lowerLimit = -127; pid[3].upperLimit = 127;
-"46
+[; ;main.c: 47: pid[3].lowerLimit = -127; pid[3].upperLimit = 127;
+"47
 [e = . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 9 -> -U -> 127 `i `f ]
 [e = . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 8 -> -> 127 `i `f ]
-[; ;main.c: 47: pid[3].Kp = 1.0; pid[3].Ki = 0.0; pid[3].Kd = 0.0; pid[3].step = 1.0;
-"47
+[; ;main.c: 48: pid[3].Kp = 1.0; pid[3].Ki = 0.0; pid[3].Kd = 0.0; pid[3].step = 1.0;
+"48
 [e = . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 0 -> .1.0 `f ]
 [e = . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 1 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 2 -> .0.0 `f ]
 [e = . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 7 -> .1.0 `f ]
-"49
-[v _j `uc ~T0 @X0 1 a ]
-[; ;main.c: 49: unsigned char j=1;
-[e = _j -> -> 1 `i `uc ]
-[; ;main.c: 50: for(unsigned char i = 1; i < 165; ++i) {
 "50
+[v _j `uc ~T0 @X0 1 a ]
+[; ;main.c: 50: unsigned char j=1;
+[e = _j -> -> 1 `i `uc ]
+[; ;main.c: 51: for(unsigned char i = 1; i < 185; ++i) {
+"51
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 165 `i 517  ]
+[e $ < -> _i `i -> 185 `i 517  ]
 [e $U 518  ]
 [e :U 517 ]
 {
-[; ;main.c: 51: if(i < 35)
-"51
-[e $ ! < -> _i `i -> 35 `i 520  ]
-[; ;main.c: 52: j++;
-"52
-[e ++ _j -> -> 1 `i `uc ]
-[e :U 520 ]
-[; ;main.c: 53: _pwm[0] = i;
-"53
-[e = *U + &U __pwm * -> -> -> 0 `i `ui `ux -> -> # *U &U __pwm `ui `ux _i ]
-[; ;main.c: 54: _pwm[1] = i;
+[; ;main.c: 54: _pwm[0] = i;
 "54
-[e = *U + &U __pwm * -> -> -> 1 `i `ui `ux -> -> # *U &U __pwm `ui `ux _i ]
-[; ;main.c: 55: _pwm[3] = i + 8;
+[e = *U + &U __pwm * -> -> -> 0 `i `ui `ux -> -> # *U &U __pwm `ui `ux _i ]
+[; ;main.c: 55: _pwm[1] = i;
 "55
-[e = *U + &U __pwm * -> -> -> 3 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> + -> _i `i -> 8 `i `uc ]
-[; ;main.c: 56: _pwm[2] = i + j;
+[e = *U + &U __pwm * -> -> -> 1 `i `ui `ux -> -> # *U &U __pwm `ui `ux _i ]
+[; ;main.c: 56: _pwm[3] = i;
 "56
-[e = *U + &U __pwm * -> -> -> 2 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> + -> _i `i -> _j `i `uc ]
-[; ;main.c: 57: delayMS(90);
+[e = *U + &U __pwm * -> -> -> 3 `i `ui `ux -> -> # *U &U __pwm `ui `ux _i ]
+[; ;main.c: 57: _pwm[2] = i;
 "57
+[e = *U + &U __pwm * -> -> -> 2 `i `ui `ux -> -> # *U &U __pwm `ui `ux _i ]
+[; ;main.c: 58: delayMS(90);
+"58
 [e ( _delayMS (1 -> -> 90 `i `ui ]
-"58
+"59
 }
-"50
+"51
 [e =+ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 165 `i 517  ]
+[e $ < -> _i `i -> 185 `i 517  ]
 [e :U 518 ]
-"58
-}
-[; ;main.c: 58: }
-[; ;main.c: 59: while(1){
 "59
-[e :U 522 ]
-{
-"61
-[v _l `f ~T0 @X0 1 a ]
-[; ;main.c: 61: float l = 2, lambda = 1;
-[e = _l -> -> 2 `i `f ]
-[v _lambda `f ~T0 @X0 1 a ]
-[e = _lambda -> -> 1 `i `f ]
-[; ;main.c: 62: z += filtro*((readACC(0x36) + readACC(0x37)<<8)/256 - z);
-"62
-[e =+ _z * _filtro - -> / << + -> ( _readACC (1 -> -> 54 `i `uc `i -> ( _readACC (1 -> -> 55 `i `uc `i -> 8 `i -> 256 `i `f _z ]
-[; ;main.c: 63: PID_outputControlCalc(0,(z + 11.6),0);
-"63
-[e ( _PID_outputControlCalc (3 , , -> -> 0 `i `f -> + -> _z `d .11.6 `f -> -> 0 `i `uc ]
-"64
-[v _u1 `f ~T0 @X0 1 a ]
-[; ;main.c: 64: float u1 = pid[0].controlSignal + 740;
-[e = _u1 + . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 -> -> 740 `i `f ]
-[; ;main.c: 65: phi += filtro*((readGIRO(0x28) + readGIRO(0x29)<<8)/256 - phi);
-"65
-[e =+ _phi * _filtro - -> / << + -> ( _readGIRO (1 -> -> 40 `i `uc `i -> ( _readGIRO (1 -> -> 41 `i `uc `i -> 8 `i -> 256 `i `f _phi ]
-[; ;main.c: 66: PID_outputControlCalc(0.0,(phi + 3.0),1);
-"66
-[e ( _PID_outputControlCalc (3 , , -> .0.0 `f -> + -> _phi `d .3.0 `f -> -> 1 `i `uc ]
-"67
-[v _u2 `f ~T0 @X0 1 a ]
-[; ;main.c: 67: float u2 = pid[1].controlSignal;
-[e = _u2 . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 ]
-[; ;main.c: 68: psi += filtro*((readGIRO(0x2A) + readGIRO(0x2B))/256 - psi);
-"68
-[e =+ _psi * _filtro - -> / + -> ( _readGIRO (1 -> -> 42 `i `uc `i -> ( _readGIRO (1 -> -> 43 `i `uc `i -> 256 `i `f _psi ]
-[; ;main.c: 69: PID_outputControlCalc(0.0,(psi + 2.0),2);
-"69
-[e ( _PID_outputControlCalc (3 , , -> .0.0 `f -> + -> _psi `d .2.0 `f -> -> 2 `i `uc ]
-"70
-[v _u3 `f ~T0 @X0 1 a ]
-[; ;main.c: 70: float u3 = pid[2].controlSignal;
-[e = _u3 . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 ]
-[; ;main.c: 71: theta = filtro*((readGIRO(0x2C) + readGIRO(0x2D))/256-theta);
-"71
-[e = _theta * _filtro - -> / + -> ( _readGIRO (1 -> -> 44 `i `uc `i -> ( _readGIRO (1 -> -> 45 `i `uc `i -> 256 `i `f _theta ]
-[; ;main.c: 72: PID_outputControlCalc(0.0,(theta + 2.0),3);
-"72
-[e ( _PID_outputControlCalc (3 , , -> .0.0 `f -> + -> _theta `d .2.0 `f -> -> 3 `i `uc ]
-"73
-[v _u4 `f ~T0 @X0 1 a ]
-[; ;main.c: 73: float u4 = pid[3].controlSignal;
-[e = _u4 . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 ]
-"84
-[v _pwmTemp `f ~T0 @X0 1 a ]
-[; ;main.c: 84: float pwmTemp = (u1/4 - u3/(2*l) - u4/(4*lambda));
-[e = _pwmTemp - - / _u1 -> -> 4 `i `f / _u3 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
-[; ;main.c: 85: if(pwmTemp <= 0)
-"85
-[e $ ! <= _pwmTemp -> -> 0 `i `f 524  ]
-[; ;main.c: 86: pwmTemp = 1;
-"86
-[e = _pwmTemp -> -> 1 `i `f ]
-[e :U 524 ]
-[; ;main.c: 87: _pwm[0] = (unsigned char) pwmTemp;
-"87
-[e = *U + &U __pwm * -> -> -> 0 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
-[; ;main.c: 88: pwmTemp = (u1/4 - u2/(2*l) + u4/(4*lambda));
-"88
-[e = _pwmTemp + - / _u1 -> -> 4 `i `f / _u2 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
-[; ;main.c: 89: if(pwmTemp <= 0)
-"89
-[e $ ! <= _pwmTemp -> -> 0 `i `f 525  ]
-[; ;main.c: 90: pwmTemp = 1;
-"90
-[e = _pwmTemp -> -> 1 `i `f ]
-[e :U 525 ]
-[; ;main.c: 91: _pwm[1] = (unsigned char) pwmTemp;
-"91
-[e = *U + &U __pwm * -> -> -> 1 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
-[; ;main.c: 92: pwmTemp = (u1/4 + u3/(2*l) - u4/(4*lambda));
-"92
-[e = _pwmTemp - + / _u1 -> -> 4 `i `f / _u3 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
-[; ;main.c: 93: if(pwmTemp <= 0)
-"93
-[e $ ! <= _pwmTemp -> -> 0 `i `f 526  ]
-[; ;main.c: 94: pwmTemp = 1;
-"94
-[e = _pwmTemp -> -> 1 `i `f ]
-[e :U 526 ]
-[; ;main.c: 95: _pwm[3] = (unsigned char) pwmTemp;
-"95
-[e = *U + &U __pwm * -> -> -> 3 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
-[; ;main.c: 96: pwmTemp = (u1/4 + u2/(2*l) + u4/(4*lambda));
-"96
-[e = _pwmTemp + + / _u1 -> -> 4 `i `f / _u2 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
-[; ;main.c: 97: if(pwmTemp <= 0)
-"97
-[e $ ! <= _pwmTemp -> -> 0 `i `f 527  ]
-[; ;main.c: 98: pwmTemp = 1;
-"98
-[e = _pwmTemp -> -> 1 `i `f ]
-[e :U 527 ]
-[; ;main.c: 99: _pwm[2] = (unsigned char) pwmTemp;
-"99
-[e = *U + &U __pwm * -> -> -> 2 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
-[; ;main.c: 101: _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _dela
-"101
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;main.c: 102: _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _dela
-"102
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-"103
 }
+[; ;main.c: 59: }
+[; ;main.c: 60: while(1){
+"60
 [e :U 521 ]
-"59
-[e $U 522  ]
+{
+[; ;main.c: 61: readAccelGiroValues();
+"61
+[e ( _readAccelGiroValues ..  ]
+[; ;main.c: 62: PID_outputControlCalc(5,pos.z,0);
+"62
+[e ( _PID_outputControlCalc (3 , , -> -> 5 `i `f . _pos 2 -> -> 0 `i `uc ]
+"63
+[v _u1 `f ~T0 @X0 1 a ]
+[; ;main.c: 63: float u1 = pid[0].controlSignal + 740;
+[e = _u1 + . *U + &U _pid * -> -> -> 0 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 -> -> 740 `i `f ]
+[; ;main.c: 64: PID_outputControlCalc(0.0,giro.x,1);
+"64
+[e ( _PID_outputControlCalc (3 , , -> .0.0 `f . _giro 0 -> -> 1 `i `uc ]
+"65
+[v _u2 `f ~T0 @X0 1 a ]
+[; ;main.c: 65: float u2 = pid[1].controlSignal;
+[e = _u2 . *U + &U _pid * -> -> -> 1 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 ]
+[; ;main.c: 66: PID_outputControlCalc(0.0,giro.y,2);
+"66
+[e ( _PID_outputControlCalc (3 , , -> .0.0 `f . _giro 1 -> -> 2 `i `uc ]
+"67
+[v _u3 `f ~T0 @X0 1 a ]
+[; ;main.c: 67: float u3 = pid[2].controlSignal;
+[e = _u3 . *U + &U _pid * -> -> -> 2 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 ]
+[; ;main.c: 68: PID_outputControlCalc(0.0,giro.z,3);
+"68
+[e ( _PID_outputControlCalc (3 , , -> .0.0 `f . _giro 2 -> -> 3 `i `uc ]
+"69
+[v _u4 `f ~T0 @X0 1 a ]
+[; ;main.c: 69: float u4 = pid[3].controlSignal;
+[e = _u4 . *U + &U _pid * -> -> -> 3 `i `ui `ux -> -> # *U &U _pid `ui `ux 10 ]
+"71
+[v _pwmTemp `f ~T0 @X0 1 a ]
+[; ;main.c: 71: float pwmTemp = (u1/4 - u3/(2*l) - u4/(4*lambda));
+[e = _pwmTemp - - / _u1 -> -> 4 `i `f / _u3 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
+[; ;main.c: 72: if(pwmTemp < 0)
+"72
+[e $ ! < _pwmTemp -> -> 0 `i `f 523  ]
+[; ;main.c: 73: pwmTemp = 0;
+"73
+[e = _pwmTemp -> -> 0 `i `f ]
 [e :U 523 ]
-[; ;main.c: 103: }
-[; ;main.c: 104: return;
-"104
+[; ;main.c: 74: _pwm[0] = (unsigned char) pwmTemp;
+"74
+[e = *U + &U __pwm * -> -> -> 0 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
+[; ;main.c: 75: pwmTemp = (u1/4 - u2/(2*l) + u4/(4*lambda));
+"75
+[e = _pwmTemp + - / _u1 -> -> 4 `i `f / _u2 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
+[; ;main.c: 76: if(pwmTemp < 0)
+"76
+[e $ ! < _pwmTemp -> -> 0 `i `f 524  ]
+[; ;main.c: 77: pwmTemp = 0;
+"77
+[e = _pwmTemp -> -> 0 `i `f ]
+[e :U 524 ]
+[; ;main.c: 78: _pwm[1] = (unsigned char) pwmTemp;
+"78
+[e = *U + &U __pwm * -> -> -> 1 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
+[; ;main.c: 79: pwmTemp = (u1/4 + u3/(2*l) - u4/(4*lambda));
+"79
+[e = _pwmTemp - + / _u1 -> -> 4 `i `f / _u3 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
+[; ;main.c: 80: if(pwmTemp < 0)
+"80
+[e $ ! < _pwmTemp -> -> 0 `i `f 525  ]
+[; ;main.c: 81: pwmTemp = 0;
+"81
+[e = _pwmTemp -> -> 0 `i `f ]
+[e :U 525 ]
+[; ;main.c: 82: _pwm[3] = (unsigned char) pwmTemp;
+"82
+[e = *U + &U __pwm * -> -> -> 3 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
+[; ;main.c: 83: pwmTemp = (u1/4 + u2/(2*l) + u4/(4*lambda));
+"83
+[e = _pwmTemp + + / _u1 -> -> 4 `i `f / _u2 * -> -> 2 `i `f _l / _u4 * -> -> 4 `i `f _lambda ]
+[; ;main.c: 84: if(pwmTemp < 0)
+"84
+[e $ ! < _pwmTemp -> -> 0 `i `f 526  ]
+[; ;main.c: 85: pwmTemp = 0;
+"85
+[e = _pwmTemp -> -> 0 `i `f ]
+[e :U 526 ]
+[; ;main.c: 86: _pwm[2] = (unsigned char) pwmTemp;
+"86
+[e = *U + &U __pwm * -> -> -> 2 `i `ui `ux -> -> # *U &U __pwm `ui `ux -> _pwmTemp `uc ]
+[; ;main.c: 88: _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _dela
+"88
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;main.c: 89: _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _delay((unsigned long)((10)*(48000000/4000.0))); _dela
+"89
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+"90
+}
+[e :U 520 ]
+"60
+[e $U 521  ]
+[e :U 522 ]
+[; ;main.c: 90: }
+[; ;main.c: 91: return;
+"91
 [e $UE 516  ]
-[; ;main.c: 105: }
-"105
+[; ;main.c: 92: }
+"92
 [e :UE 516 ]
 }

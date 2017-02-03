@@ -3,14 +3,18 @@
 [d edition pro ]
 [d chip 18F2550 ]
 [d frameptr 4065 ]
-"16 D:\backup\Teste18f.X\ADC.c
+"16 D:\Dropbox\BibEngenharia\Pic18f2550\ADC.c
 [v _ADC_ReInit ADC_ReInit `(v  1 e 1 0 ]
 "28
 [v _ADC_Read_Interrupt ADC_Read_Interrupt `(v  1 e 1 0 ]
-"53 D:\backup\Teste18f.X\ADXL345.c
+"3 D:\Dropbox\BibEngenharia\Pic18f2550\ADXL345.c
+[v _initI2C initI2C `(v  1 e 1 0 ]
+"53
 [v _readACC readACC `(uc  1 e 1 0 ]
 "69
 [v _readGIRO readGIRO `(uc  1 e 1 0 ]
+"85
+[v _sensorInit sensorInit `(v  1 e 1 0 ]
 "108
 [v _readAccelGiroValues readAccelGiroValues `(v  1 e 1 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\awdiv.c
@@ -59,21 +63,21 @@
 [v _ReadI2C ReadI2C `(uc  1 e 1 0 ]
 "12 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\pic18\plib\i2c\i2c_writ.c
 [v _WriteI2C WriteI2C `(c  1 e 1 0 ]
-"4 D:\backup\Teste18f.X\Interrup.c
+"4 D:\Dropbox\BibEngenharia\Pic18f2550\Interrup.c
 [v _INTERRUPTION INTERRUPTION `II(v  1 e 1 0 ]
 "20
 [v _INTERRUPTION_Timer0 INTERRUPTION_Timer0 `(v  1 e 1 0 ]
 "32
 [v _INTERRUPTION_Serial INTERRUPTION_Serial `(v  1 e 1 0 ]
-"25 D:\backup\Teste18f.X\main.c
+"25 D:\Dropbox\BibEngenharia\Pic18f2550\main.c
 [v _main main `(v  1 e 1 0 ]
-"3 D:\backup\Teste18f.X\PID.c
+"3 D:\Dropbox\BibEngenharia\Pic18f2550\PID.c
 [v _PID_outputControlCalc PID_outputControlCalc `(v  1 e 1 0 ]
-"4 D:\backup\Teste18f.X\PWM.c
+"4 D:\Dropbox\BibEngenharia\Pic18f2550\PWM.c
 [v _PWM_Init PWM_Init `(v  1 e 1 0 ]
 "19
 [v _PWM_Execute PWM_Execute `(v  1 e 1 0 ]
-"3 D:\backup\Teste18f.X\Serial.c
+"3 D:\Dropbox\BibEngenharia\Pic18f2550\Serial.c
 [v _delaySeg delaySeg `(v  1 e 1 0 ]
 "11
 [v _delayMS delayMS `(v  1 e 1 0 ]
@@ -95,12 +99,12 @@
 [v _waitUntil waitUntil `(v  1 e 1 0 ]
 "136
 [v _SerialReadUntilToken SerialReadUntilToken `(v  1 e 1 0 ]
-"15 D:\backup\Teste18f.X\ADC.h
+"15 D:\Dropbox\BibEngenharia\Pic18f2550\ADC.h
 [v _ADC ADC `[10]ui  1 e 20 0 ]
 "16
 [v _ADC_Channel ADC_Channel `ui  1 e 2 0 ]
 [v _ADC_NChannel ADC_NChannel `ui  1 e 2 0 ]
-"43 D:\backup\Teste18f.X\ADXL345.h
+"43 D:\Dropbox\BibEngenharia\Pic18f2550\ADXL345.h
 [v _filtro filtro `f  1 e 3 0 ]
 "44
 [v _h h `f  1 e 3 0 ]
@@ -255,30 +259,30 @@
 [v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
 "6084
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
-[s S1202 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S1209 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "6324
-[s S1208 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S1215 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S1213 . 1 `S1202 1 . 1 0 `S1208 1 . 1 0 ]
-[v _SSPCON1bits SSPCON1bits `VES1213  1 e 1 @4038 ]
+[u S1220 . 1 `S1209 1 . 1 0 `S1215 1 . 1 0 ]
+[v _SSPCON1bits SSPCON1bits `VES1220  1 e 1 @4038 ]
 "6342
 [v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
-[s S903 . 1 `uc 1 . 1 0 :2:0 
+[s S910 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "6475
-[s S906 . 1 `uc 1 . 1 0 :5:0 
+[s S913 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S909 . 1 `uc 1 BF 1 0 :1:0 
+[s S916 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -287,63 +291,63 @@
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S924 . 1 `uc 1 . 1 0 :2:0 
+[s S931 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S929 . 1 `uc 1 . 1 0 :2:0 
+[s S936 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S935 . 1 `uc 1 . 1 0 :2:0 
+[s S942 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S940 . 1 `uc 1 . 1 0 :2:0 
+[s S947 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S943 . 1 `uc 1 . 1 0 :5:0 
+[s S950 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S946 . 1 `uc 1 . 1 0 :2:0 
+[s S953 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S951 . 1 `uc 1 . 1 0 :2:0 
+[s S958 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S956 . 1 `uc 1 . 1 0 :2:0 
+[s S963 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S961 . 1 `uc 1 . 1 0 :5:0 
+[s S968 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S964 . 1 `uc 1 . 1 0 :2:0 
+[s S971 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 ]
-[s S967 . 1 `uc 1 . 1 0 :3:0 
+[s S974 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 START 1 0 :1:3 
 ]
-[s S970 . 1 `uc 1 . 1 0 :4:0 
+[s S977 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 STOP 1 0 :1:4 
 ]
-[s S973 . 1 `uc 1 . 1 0 :2:0 
+[s S980 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 ]
-[s S976 . 1 `uc 1 . 1 0 :5:0 
+[s S983 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S979 . 1 `S903 1 . 1 0 `S906 1 . 1 0 `S909 1 . 1 0 `S903 1 . 1 0 `S906 1 . 1 0 `S924 1 . 1 0 `S929 1 . 1 0 `S935 1 . 1 0 `S940 1 . 1 0 `S943 1 . 1 0 `S946 1 . 1 0 `S951 1 . 1 0 `S956 1 . 1 0 `S961 1 . 1 0 `S964 1 . 1 0 `S967 1 . 1 0 `S970 1 . 1 0 `S973 1 . 1 0 `S976 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES979  1 e 1 @4039 ]
+[u S986 . 1 `S910 1 . 1 0 `S913 1 . 1 0 `S916 1 . 1 0 `S910 1 . 1 0 `S913 1 . 1 0 `S931 1 . 1 0 `S936 1 . 1 0 `S942 1 . 1 0 `S947 1 . 1 0 `S950 1 . 1 0 `S953 1 . 1 0 `S958 1 . 1 0 `S963 1 . 1 0 `S968 1 . 1 0 `S971 1 . 1 0 `S974 1 . 1 0 `S977 1 . 1 0 `S980 1 . 1 0 `S983 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES986  1 e 1 @4039 ]
 "6645
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
 "7214
@@ -417,57 +421,66 @@
 [v _TXIE TXIE `VEb  1 e 0 @31980 ]
 "9248
 [v _TXIF TXIF `VEb  1 e 0 @31988 ]
-"13 D:\backup\Teste18f.X\conversions.h
+"13 D:\Dropbox\BibEngenharia\Pic18f2550\conversions.h
 [v _A A `[6][6]uc  1 e 36 0 ]
+"13 D:\Dropbox\BibEngenharia\Pic18f2550\motorDePasso.h
+[v _step step `uc  1 e 1 0 ]
 [s S263 PID 37 `f 1 Kp 3 0 `f 1 Ki 3 3 `f 1 Kd 3 6 `f 1 error 3 9 `f 1 dError 3 12 `f 1 iError 3 15 `f 1 aError 3 18 `f 1 step 3 21 `f 1 upperLimit 3 24 `f 1 lowerLimit 3 27 `f 1 controlSignal 3 30 `ui 1 checkUpLim 2 33 `ui 1 checkLowLim 2 35 ]
-"20 D:\backup\Teste18f.X\PID.h
+"20 D:\Dropbox\BibEngenharia\Pic18f2550\PID.h
 [v _pid pid `[4]S263  1 e 148 0 ]
-"16 D:\backup\Teste18f.X\PWM.h
+"16 D:\Dropbox\BibEngenharia\Pic18f2550\PWM.h
 [v _freq freq `uc  1 e 1 0 ]
 "17
 [v __pwm _pwm `[5]uc  1 e 5 0 ]
 "18
 [v _PWM_Counter PWM_Counter `uc  1 e 1 0 ]
-"23 D:\backup\Teste18f.X\Serial.h
+"23 D:\Dropbox\BibEngenharia\Pic18f2550\Serial.h
 [v _SerialReceivedData SerialReceivedData `uc  1 e 1 0 ]
 "24
 [v _SerialReceivedString SerialReceivedString `[50]uc  1 e 50 0 ]
 "26
 [v _SerialLen SerialLen `ui  1 e 2 0 ]
-"14 D:\backup\Teste18f.X\wifiTCP.h
+"14 D:\Dropbox\BibEngenharia\Pic18f2550\wifiTCP.h
 [v _flagLink flagLink `b  1 e 0 0 ]
 "15
 [v _WifiTCPData WifiTCPData `[15]uc  1 e 15 0 ]
 "16
 [v _WifiTCPDataLen WifiTCPDataLen `ui  1 e 2 0 ]
-"25 D:\backup\Teste18f.X\main.c
+"25 D:\Dropbox\BibEngenharia\Pic18f2550\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"84
-[v main@pwmTemp pwmTemp `f  1 a 3 38 ]
-"73
-[v main@u4 u4 `f  1 a 3 28 ]
-"64
-[v main@u1 u1 `f  1 a 3 25 ]
-"61
-[v main@lambda lambda `f  1 a 3 22 ]
-[v main@l l `f  1 a 3 19 ]
-"70
-[v main@u3 u3 `f  1 a 3 4 ]
+"71
+[v main@pwmTemp pwmTemp `f  1 a 3 23 ]
+"69
+[v main@u4 u4 `f  1 a 3 16 ]
+"63
+[v main@u1 u1 `f  1 a 3 13 ]
 "67
+[v main@u3 u3 `f  1 a 3 4 ]
+"65
 [v main@u2 u2 `f  1 a 3 1 ]
+"51
+[v main@i i `uc  1 a 1 22 ]
+"36
+[v main@lambda lambda `f  1 a 3 10 ]
+[v main@l l `f  1 a 3 7 ]
 "50
-[v main@i i `uc  1 a 1 34 ]
-"35
-[v main@psi psi `f  1 a 3 16 ]
-[v main@phi phi `f  1 a 3 13 ]
-[v main@z z `f  1 a 3 10 ]
-[v main@theta theta `f  1 a 3 7 ]
-"49
 [v main@j j `uc  1 a 1 0 ]
-"105
+"92
 } 0
-"69 D:\backup\Teste18f.X\ADXL345.c
+"85 D:\Dropbox\BibEngenharia\Pic18f2550\ADXL345.c
+[v _sensorInit sensorInit `(v  1 e 1 0 ]
+{
+"96
+[v sensorInit@i i `uc  1 a 1 27 ]
+"106
+} 0
+"108
+[v _readAccelGiroValues readAccelGiroValues `(v  1 e 1 0 ]
+{
+"132
+} 0
+"69
 [v _readGIRO readGIRO `(uc  1 e 1 0 ]
 {
 [v readGIRO@Adress Adress `uc  1 a 1 wreg ]
@@ -491,50 +504,10 @@
 [v readACC@Adress Adress `uc  1 a 1 20 ]
 "67
 } 0
-"12 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\pic18\plib\i2c\i2c_writ.c
-[v _WriteI2C WriteI2C `(c  1 e 1 0 ]
-{
-[v WriteI2C@data_out data_out `uc  1 a 1 wreg ]
-[v WriteI2C@data_out data_out `uc  1 a 1 wreg ]
-"14
-[v WriteI2C@data_out data_out `uc  1 a 1 19 ]
-"43
-} 0
-"24 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\pic18\plib\i2c\i2c_idle.c
-[v _IdleI2C IdleI2C `(v  1 e 1 0 ]
-{
-"28
-} 0
 "11 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\pic18\plib\i2c\i2c_read.c
 [v _ReadI2C ReadI2C `(uc  1 e 1 0 ]
 {
 "17
-} 0
-"18 D:\backup\Teste18f.X\Serial.c
-[v _initUART initUART `(v  1 e 1 0 ]
-{
-"34
-} 0
-"11
-[v _delayMS delayMS `(v  1 e 1 0 ]
-{
-"13
-[v delayMS@j j `ui  1 a 2 21 ]
-"11
-[v delayMS@waitTime waitTime `ui  1 p 2 18 ]
-"16
-} 0
-"44 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\fttol.c
-[v ___fttol __fttol `(l  1 e 4 0 ]
-{
-"47
-[v ___fttol@lval lval `ul  1 a 4 28 ]
-"46
-[v ___fttol@exp1 exp1 `uc  1 a 1 32 ]
-[v ___fttol@sign1 sign1 `uc  1 a 1 27 ]
-"44
-[v ___fttol@f1 f1 `f  1 p 3 18 ]
-"73
 } 0
 "32 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\awtoft.c
 [v ___awtoft __awtoft `(f  1 e 3 0 ]
@@ -558,37 +531,87 @@
 [v ___awdiv@divisor divisor `i  1 p 2 24 ]
 "42
 } 0
-"4 D:\backup\Teste18f.X\PWM.c
+"18 D:\Dropbox\BibEngenharia\Pic18f2550\Serial.c
+[v _initUART initUART `(v  1 e 1 0 ]
+{
+"34
+} 0
+"3 D:\Dropbox\BibEngenharia\Pic18f2550\ADXL345.c
+[v _initI2C initI2C `(v  1 e 1 0 ]
+{
+[v initI2C@Adress1 Adress1 `uc  1 a 1 wreg ]
+[v initI2C@Adress1 Adress1 `uc  1 a 1 wreg ]
+[v initI2C@Adress2 Adress2 `uc  1 p 1 20 ]
+"5
+[v initI2C@Adress1 Adress1 `uc  1 a 1 21 ]
+"51
+} 0
+"12 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\pic18\plib\i2c\i2c_writ.c
+[v _WriteI2C WriteI2C `(c  1 e 1 0 ]
+{
+[v WriteI2C@data_out data_out `uc  1 a 1 wreg ]
+[v WriteI2C@data_out data_out `uc  1 a 1 wreg ]
+"14
+[v WriteI2C@data_out data_out `uc  1 a 1 19 ]
+"43
+} 0
+"24 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\pic18\plib\i2c\i2c_idle.c
+[v _IdleI2C IdleI2C `(v  1 e 1 0 ]
+{
+"28
+} 0
+"11 D:\Dropbox\BibEngenharia\Pic18f2550\Serial.c
+[v _delayMS delayMS `(v  1 e 1 0 ]
+{
+"13
+[v delayMS@j j `ui  1 a 2 21 ]
+"11
+[v delayMS@waitTime waitTime `ui  1 p 2 18 ]
+"16
+} 0
+"44 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\fttol.c
+[v ___fttol __fttol `(l  1 e 4 0 ]
+{
+"47
+[v ___fttol@lval lval `ul  1 a 4 28 ]
+"46
+[v ___fttol@exp1 exp1 `uc  1 a 1 32 ]
+[v ___fttol@sign1 sign1 `uc  1 a 1 27 ]
+"44
+[v ___fttol@f1 f1 `f  1 p 3 18 ]
+"73
+} 0
+"4 D:\Dropbox\BibEngenharia\Pic18f2550\PWM.c
 [v _PWM_Init PWM_Init `(v  1 e 1 0 ]
 {
 "17
 } 0
-"3 D:\backup\Teste18f.X\PID.c
+"3 D:\Dropbox\BibEngenharia\Pic18f2550\PID.c
 [v _PID_outputControlCalc PID_outputControlCalc `(v  1 e 1 0 ]
 {
-[v PID_outputControlCalc@reference reference `f  1 p 3 18 ]
-[v PID_outputControlCalc@systemOutput systemOutput `f  1 p 3 21 ]
-[v PID_outputControlCalc@whichPID whichPID `uc  1 p 1 24 ]
+[v PID_outputControlCalc@reference reference `f  1 p 3 21 ]
+[v PID_outputControlCalc@systemOutput systemOutput `f  1 p 3 24 ]
+[v PID_outputControlCalc@whichPID whichPID `uc  1 p 1 27 ]
 "35
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\ftneg.c
 [v ___ftneg __ftneg `(f  1 e 3 0 ]
 {
-[v ___ftneg@f1 f1 `f  1 p 3 26 ]
+[v ___ftneg@f1 f1 `f  1 p 3 6 ]
 "20
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 {
 "65
-[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 1 ]
+[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 44 ]
 "64
-[v ___ftmul@sign sign `uc  1 a 1 5 ]
-[v ___ftmul@cntr cntr `uc  1 a 1 4 ]
-[v ___ftmul@exp exp `uc  1 a 1 0 ]
+[v ___ftmul@sign sign `uc  1 a 1 48 ]
+[v ___ftmul@cntr cntr `uc  1 a 1 47 ]
+[v ___ftmul@exp exp `uc  1 a 1 43 ]
 "62
-[v ___ftmul@f1 f1 `f  1 p 3 46 ]
-[v ___ftmul@f2 f2 `f  1 p 3 49 ]
+[v ___ftmul@f1 f1 `f  1 p 3 34 ]
+[v ___ftmul@f2 f2 `f  1 p 3 37 ]
 "157
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\ftge.c
@@ -602,26 +625,26 @@
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
 {
 "60
-[v ___ftdiv@f3 f3 `f  1 a 3 13 ]
+[v ___ftdiv@f3 f3 `f  1 a 3 1 ]
 "59
-[v ___ftdiv@sign sign `uc  1 a 1 17 ]
-[v ___ftdiv@exp exp `uc  1 a 1 16 ]
-[v ___ftdiv@cntr cntr `uc  1 a 1 12 ]
+[v ___ftdiv@sign sign `uc  1 a 1 5 ]
+[v ___ftdiv@exp exp `uc  1 a 1 4 ]
+[v ___ftdiv@cntr cntr `uc  1 a 1 0 ]
 "54
-[v ___ftdiv@f1 f1 `f  1 p 3 6 ]
-[v ___ftdiv@f2 f2 `f  1 p 3 9 ]
+[v ___ftdiv@f1 f1 `f  1 p 3 49 ]
+[v ___ftdiv@f2 f2 `f  1 p 3 52 ]
 "86
 } 0
 "86 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
 {
 "88
-[v ___ftadd@exp1 exp1 `uc  1 a 1 45 ]
-[v ___ftadd@exp2 exp2 `uc  1 a 1 44 ]
-[v ___ftadd@sign sign `uc  1 a 1 43 ]
+[v ___ftadd@exp1 exp1 `uc  1 a 1 20 ]
+[v ___ftadd@exp2 exp2 `uc  1 a 1 19 ]
+[v ___ftadd@sign sign `uc  1 a 1 18 ]
 "86
-[v ___ftadd@f1 f1 `f  1 p 3 34 ]
-[v ___ftadd@f2 f2 `f  1 p 3 37 ]
+[v ___ftadd@f1 f1 `f  1 p 3 9 ]
+[v ___ftadd@f2 f2 `f  1 p 3 12 ]
 "148
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\float.c
@@ -632,7 +655,7 @@
 [v ___ftpack@sign sign `uc  1 p 1 22 ]
 "86
 } 0
-"4 D:\backup\Teste18f.X\Interrup.c
+"4 D:\Dropbox\BibEngenharia\Pic18f2550\Interrup.c
 [v _INTERRUPTION INTERRUPTION `II(v  1 e 1 0 ]
 {
 "17
@@ -642,17 +665,17 @@
 {
 "28
 } 0
-"19 D:\backup\Teste18f.X\PWM.c
+"19 D:\Dropbox\BibEngenharia\Pic18f2550\PWM.c
 [v _PWM_Execute PWM_Execute `(v  1 e 1 0 ]
 {
 "47
 } 0
-"32 D:\backup\Teste18f.X\Interrup.c
+"32 D:\Dropbox\BibEngenharia\Pic18f2550\Interrup.c
 [v _INTERRUPTION_Serial INTERRUPTION_Serial `(v  1 e 1 0 ]
 {
 "87
 } 0
-"115 D:\backup\Teste18f.X\Serial.c
+"115 D:\Dropbox\BibEngenharia\Pic18f2550\Serial.c
 [v _waitToken waitToken `(b  1 e 0 0 ]
 {
 [v waitToken@value value `uc  1 a 1 wreg ]

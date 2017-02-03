@@ -93,7 +93,7 @@ void sensorInit()
     accelBias.x = 0;      accelBias.y = 0;      accelBias.z = 0;
     giroBias.x = 0;       giroBias.y = 0;       giroBias.z = 0;
     
-    for(unsigned char i = 0; i < 100; ++i)
+    for(unsigned char i = 0; i < 200; ++i)
         readAccelGiroValues();
     
     accelBias.x = accelTemp.x;
