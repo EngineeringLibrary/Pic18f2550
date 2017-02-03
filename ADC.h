@@ -11,7 +11,6 @@
 #define	ADC_H
 
 #include <plib/adc.h>
-#include "PWM.h"
 
 unsigned ADC[10];                               //A CADA 2 POSIÇÕES 1 BYTE
 unsigned ADC_Channel = 0, ADC_NChannel = 5;
@@ -19,7 +18,6 @@ unsigned ADC_Channel = 0, ADC_NChannel = 5;
 void ADC_Init();                                //INICIALIZA ADC
 void ADC_reInit(unsigned AdcChannel);    
 void ADC_Read_Interrupt(unsigned AdcChannel);   //LEITURA ADC
-void ADC_PWM(unsigned AdcChannel);
 unsigned* ADC_Read(unsigned channel);
 
 #endif	/* ADC_H */

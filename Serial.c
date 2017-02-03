@@ -29,6 +29,7 @@ void initUART(void)
     ADDEN = 0;   FERR = 0;    OERR = 0;
     RX9D = 0;    TXIE = 0;    RCIE = 1;
     
+    #define usingUart 
     return;
 }
 
@@ -71,7 +72,7 @@ void SerialWrite(const char* frase)
     return;
 }
 
-char SerialRead(void)
+unsigned char SerialRead(void)
 {
     if(OERR)
     {

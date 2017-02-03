@@ -12,10 +12,9 @@
 #include <pconfig.h>
 #include <delays.h>
 #include <xc.h>
-#include "Serial.h"
 
-unsigned freq = 80;                      //CARGA DO TIMER0 PARA APROXIMADAMENTE 1Khz
-unsigned _pwm[5] = {255,255,255,255,255};          //VALORES DE COMPARAÇÃO PARA PWM
+unsigned char freq = 80;                      //CARGA DO TIMER0 PARA APROXIMADAMENTE 1Khz
+unsigned char _pwm[5] = {1,1,1,1,1};          //VALORES DE COMPARAÇÃO PARA PWM
 unsigned char PWM_Counter = 0;          //PWM_Counter2 = 0;
 
 void PWM_Init();                     //INICIALIZA PWM

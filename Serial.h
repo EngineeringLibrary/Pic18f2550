@@ -7,8 +7,13 @@
 
 #ifndef SERIAL_H
 #define	SERIAL_H
-#define _XTAL_FREQ 48000000 // Internal oscillator  
-#define BAUDRATE 115200
+#ifndef _XTAL_FREQ
+    #define _XTAL_FREQ 48000000
+#endif
+#ifndef BAUDRATE
+    #define BAUDRATE 115200
+#endif
+
 
 #include <usart.h>
 #include <stdio.h>
@@ -26,7 +31,7 @@ void initUART(void);                                        //INICIALIZA UART
 void SerialPrint(unsigned char byte);                       //ESCREVE BYTE
 void SerialWifiWrite (char* Valor, unsigned Tamanho);       //ESCREVE DA WIFI
 void SerialWrite(const char* frase);                        //ESCREVE DA SERIAL
-char SerialRead(void);                                      //LER BYTE
+unsigned char SerialRead(void);                                      //LER BYTE
 void SerialReadString();                                    //LER DA WIFI
 bit ContainString(const char* containedString);             
 bit waitToken(char value);

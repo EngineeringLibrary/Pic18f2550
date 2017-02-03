@@ -11,14 +11,14 @@ void PWM_Init(){
                                      //HABILITA PRESCALER 1:4
                                      
      TRISB = 0x03;                    //DEFINE PORT A COMO SAIDA
-     //LATB = 0xFF;                    //INICIA PORT A EM 1
+     LATB = 0x03;                    //INICIA PORT A EM 1
      TMR0L = freq;                   //CARGA INICIAL DO TIMER0
+     return;
 }
 
 void PWM_Execute(){
         
     PWM_Counter++;
-    
     if(PWM_Counter == _pwm[0])
         PORTB &= 0b11111011; 
     if(PWM_Counter == _pwm[1])
@@ -31,5 +31,17 @@ void PWM_Execute(){
         PORTB &= 0b10111111;
     else if(PWM_Counter == 0)
         PORTB |= 0b11111100;
+    else if(PWM_Counter == 256)
+        PORTB |= 0b11111100;
+    if(_pwm[0] == 0)
+        PORTB &= 0b11111011; 
+    if(_pwm[1] == 0)
+        PORTB &= 0b11110111;
+    if(_pwm[2] == 0)
+        PORTB &= 0b11101111;
+    if(_pwm[3] == 0)
+        PORTB &= 0b11011111;
+    if(_pwm[4] == 0)
+        PORTB &= 0b10111111;
     return;
 }

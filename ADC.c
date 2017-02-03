@@ -1,14 +1,14 @@
 #include "ADC.h"
 
 void ADC_Init(){
-    TRISA = 0x2F; // RA0,RA1,RA2,RA3,RA5 como entrada
+    TRISA |= 0x2F; // RA0,RA1,RA2,RA3,RA5 como entrada
     ADCON1 = 0x0A; //o "A" corresponde AN0 - AN4 como analógicas e o "0" deixa a faixa de tensão entre vcc e terra 
     ADCON0 = 0;
 //    ADCON0 = ADC_Channel<<2;//ADON = 1
     ADCON2 = 2<<3;
     ADCON0bits.ADON = 1;
-    ADC_INT_ENABLE();
-    ei();
+//    ADC_INT_ENABLE();
+//    ei();
 //    __delay_ms(2);
     ADCON0bits.GO_DONE = 1;
     return;
@@ -32,7 +32,7 @@ void ADC_Read_Interrupt(unsigned AdcChannel){
         ADCON0bits.CHS1 = 0;
         ADCON0bits.CHS2 = 0;
         ADCON0bits.ADON = 1;
-        __delay_us(5);
+        __delay_us(10);
         ADCON0bits.GO_DONE = 1;
         while(ADCON0bits.GO_DONE != 0);
         
@@ -45,7 +45,7 @@ void ADC_Read_Interrupt(unsigned AdcChannel){
         ADCON0bits.CHS1 = 0;
         ADCON0bits.CHS2 = 0;
         ADCON0bits.ADON = 1;
-        __delay_us(5);
+        __delay_us(10);
         ADCON0bits.GO_DONE = 1;
         while(ADCON0bits.GO_DONE != 0);
 
@@ -58,7 +58,7 @@ void ADC_Read_Interrupt(unsigned AdcChannel){
         ADCON0bits.CHS1 = 1;
         ADCON0bits.CHS2 = 0;
         ADCON0bits.ADON = 1;
-        __delay_us(5);
+        __delay_us(10);
         ADCON0bits.GO_DONE = 1;
         while(ADCON0bits.GO_DONE != 0);
 
@@ -71,7 +71,7 @@ void ADC_Read_Interrupt(unsigned AdcChannel){
         ADCON0bits.CHS1 = 1;
         ADCON0bits.CHS2 = 0;
         ADCON0bits.ADON = 1;
-        __delay_us(5);
+        __delay_us(10);
         ADCON0bits.GO_DONE = 1;
         while(ADCON0bits.GO_DONE != 0);
 
@@ -84,18 +84,12 @@ void ADC_Read_Interrupt(unsigned AdcChannel){
         ADCON0bits.CHS1 = 0;
         ADCON0bits.CHS2 = 1;
         ADCON0bits.ADON = 1;
-        __delay_us(5);
+        __delay_us(10);
         ADCON0bits.GO_DONE = 1;
         while(ADCON0bits.GO_DONE != 0);
 
         ADC[8] = ((unsigned char)ADRESL);
         ADC[9] = ((unsigned char)ADRESH);
     }
-    return;
-}
-
-void ADC_PWM(unsigned AdcChannel){
-    ADC_Read_Interrupt(AdcChannel);
-    _pwm[AdcChannel] = ADC[(unsigned char)(2*AdcChannel+1)];
     return;
 }
